@@ -1,37 +1,47 @@
+
+lotes = []  # Lista para almacenar los lotes de procesos
+
 procesos = int(input("Ingresa el Numero de Procesos: "))
-ID = int(input("Ingresa el ID: "))
-NombreProgramador = input("Ingresa el Nombre del Programador: ")
-TME = int(input("Ingresa el Tiempo Maximo Estimado: "))
-Operacion = input("Ingresa la Operacion: ")
-Num1 = int(input("Ingresa el Primer Numero: "))
-Num2 = int(input("Ingresa el Segundo Numero: "))
-#ResultadOperación, variable sin definir uso correcto aun, se corregirá después
+while True: 	
+    if procesos > 0:
+        if procesos > 5:
+            print(f'El proceso actual de este segundo lote es el numero: {len(lotes) + 1}')
+            lote = []  # Crear una lista para almacenar los procesos del lote
 
-ContadorTiempo = 1
-#Este contador global servirá para el tiempo, en especifico un contador que lleve el tiempo desde el inicio hasta el final del programa.
-#int procesos3
+            for contadorid in range(procesos):
+                print(f'Tu ID es: {contadorid}')
+                NombreProgramador = input("Ingresa el Nombre del Programador: ")
+                TME = int(input("Ingresa el Tiempo Maximo Estimado: "))
+                Operacion = input("Ingresa la Operacion: ")
+                Num1 = int(input("Ingresa el Primer Numero: "))
+                Num2 = int(input("Ingresa el Segundo Numero: "))
+                
+                lote.append({
+                    'ID': contadorid,
+                    'NombreProgramador': NombreProgramador,
+                    'TME': TME,
+                    'Operacion': Operacion,
+                    'Num1': Num1,
+                    'Num2': Num2
+                })
 
-#El programa contara con N procesos, que seran conformados por lotes de 5 procesos cada 1
-#El numero de procesos debe ser mayor a 0
-#Para las operaciones se validará que no se hagan entre cero, y en caso de que realice operaciones entre cero, arrojar mensajes de error
-#El programa imprimirá en pantalla los procesos en ejecución, los procesos terminados, y los procesos que faltan, así como
-#los respectivos datos para cada proceso
-#Se tomará el primer proceso que se ejecute como un proceso en ejecución
-#En el lote trabajando se tendrán los datos del ID () y del tiempo maximo estimado (TME)
-#En el proceso en ejecución se tendran los datos siguientes: Nombre del Programador, ID, Operación, 2 Numeros enteros para la operación, TME, Tiempo Transcurrido (TT)
-#y Tiempo Restante (TR)
-#Se mostrará en la sección principal de la pantalla el Numero de Lotes pendientes
+            lotes.append(lote)  # Agregar el lote a la lista de lotes
 
-if procesos > 5:
-	procesos2 = 1
-	print("Segundo Lote")
-	print("Procesos Restantes: " + procesos - 1)
+            print("Segundo Lote")
+            ProcesosTerminados = lotes
+			ProcesosFaltantes = 0
+			print(procesos - ProcesosTerminados)
+			#No 
 
 
-if procesos < 5:
-	procesos3 = 1
-	print("El proceso es menor a 5")
-	print(procesos3)
+        else:
+            print("No se realizarán procesos menores o iguales a 0, intenta nuevamente")
+            # Regresar al ciclo para ingresar otro valor de procesos
+    else:
+        break  # Salir del bucle si se ingresa un valor de procesos igual o menor a 0
 
-#Las anteriores son validaciónes de prueba para verificar que las variables se declararon correctamente, y que las operaciones en variables
-#cumplen su correcto funcionamiento
+# Imprimir la información de los lotes
+for i, lote in enumerate(lotes):
+    print(f"Lote {i + 1}:")
+    for proceso in lote:
+        print(f'Proceso ID: {proceso["ID"]}, Programador: {proceso["NombreProgramador"]}, TME: {proceso["TME"]}, Operación: {proceso["Operacion"]}, Num1: {proceso["Num1"]}, Num2: {proceso["Num2"]}')
